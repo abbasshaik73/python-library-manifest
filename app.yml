@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: app-service
-          image: abbasshaik739/python:appimage
+          image: abbasshaik739/python:appimage1
           ports:
             - containerPort: 5000
