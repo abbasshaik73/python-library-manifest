@@ -18,3 +18,24 @@ spec:
           image: abbasshaik739/python:appimage1
           ports:
             - containerPort: 5000
+
+#write a horizontal pod autoscaler manifest for the above deployment
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: app-service-hpa
+  namespace: flm
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: app-service
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
